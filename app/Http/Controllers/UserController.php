@@ -11,11 +11,11 @@ class UserController extends Controller
     }
 
     public function login() {
-        return view('login'); // Displays the 'login' view
+        return view('auth.login'); // Displays the 'login' view
     }
 
     public function signup() {
-        return view('signup'); // Displays the 'signup' view
+        return view('auth.signup'); // Displays the 'signup' view
     }
 
     public function profile() {

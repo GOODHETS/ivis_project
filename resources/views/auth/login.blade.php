@@ -69,10 +69,9 @@
 
         .sign-up-btn {
             font-family: 'Saira Condensed', sans-serif !important;
-            border-radius: 2 !important;
+            border-radius: 0 !important;
             width: 100px;
             font-weight: bold !important;
-            background-color:green;
         }
 
         .cta-buttons a {
@@ -175,25 +174,25 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 50px;
+    padding: 90px;
     background-color: #D7D7D7;
 }
 
-        .content-flex {
+.content-flex {
     display: flex;
     align-items: flex-start;
     gap: 20px;
 }
 
-        .logo-container {
+.logo-container {
     display: flex;
     align-items: flex-start;
 }
 
 .content-image {
-    padding-top:15vh;
     max-width: 800px;
     height: auto;
+    margin-top: 60px; /* Adjust this value to control how far down you want the image */
 }
 
 .login-container {
@@ -251,67 +250,53 @@ input[type="password"] {
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="{{ url('/') }}">INTELLIGENT VEHICLE IDENTIFICATION SYSTEM</a>
             <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                 <a href="{{ url('/login') }}" class="nav-link btn text-white sign-up-btn" style="background-color: green;">LOGIN</a>
-            </li>
-        </ul>
-
-
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="{{ url('/signup') }}" class="nav-link btn btn-danger text-white sign-up-btn">SIGN UP</a></li>
+                </ul>
             </div>
         </nav>
     </header>
 
- <!-- Main Content Section -->
-<section class="content">
-    <div class="content-flex">
-        <div class="logo-container">
-            <img src="{{ asset('image/ivislogo.png') }}" alt="IVIS Logo" class="content-image">
-        </div>
-        <div class="login-container">
-            <div class="login-text">
-                <h2>SIGN IN</h2>
+    <!-- Main Content Section -->
+    <section class="content">
+        <div class="content-flex">
+            <div class="logo-container">
+                <img src="{{ asset('image/ivislogo.png') }}" alt="IVIS Logo" class="content-image">
             </div>
-            <div class="login-form">
-                <div class="form-group">
-                   <center><label for="username">EMAIL</label></center>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required>
+            <div class="login-container">
+                <div class="login-text">
+                    <h2>LOG-IN</h2>
                 </div>
-                <div class="form-group">
-                    <center><label for="password">PASSWORD</label></center>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
-                </div>
-                <div class="form-group">
-                    <center><label for="confirm-password">CONFIRM PASSWORD</label></center>
-                    <input type="password" id="confirm-password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
-                </div>
-                <div class="login-prompt">
-                    <center><p>DO YOU HAVE AN ACCOUNT? 
-                        <a href="{{ route('login') }}" class="login">LOGIN</a></p>
-                    </center>
-                </div>
-                <div class="cta-buttons">
-                    <center><a href="#" id="signin-btn" class="btn btn-success">SIGN IN</a></center>
-                </div>
+                <form action="{{ route('login.submit') }}" method="POST" class="login-form">
+                    @csrf
+                    <div class="form-group">
+                        <center><label for="email">EMAIL</label></center>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" required>
+                    </div>
+                    <div class="form-group">
+                        <center><label for="password">PASSWORD</label></center>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
+                    </div>
+                    <!-- Display validation errors if any -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="login-prompt">
+                        <center>DON'T YOU HAVE AN ACCOUNT? <a href="{{ route('signup') }}" class="login">SIGN UP</a></center>
+                    </div>
+                    <div class="cta-buttons">
+                        <center><button type="submit" class="btn btn-success">LOGIN</button></center>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- JavaScript -->
-<script>
-    // Select the SIGN IN button by its ID
-    document.getElementById("signin-btn").addEventListener("click", function(event) {
-        // Prevent the default action (redirect) from happening immediately
-        event.preventDefault();
-        // Show the alert
-        alert("Sign-in successful! Welcome.");
-        // Optional: Redirect to the login route after the alert (or wherever you'd like to redirect)
-        window.location.href = "{{ route('login') }}";
-    });
-</script>
-
-
+    </section>
 
     <!-- Footer Section -->
     <footer class="footer">
@@ -331,8 +316,5 @@ input[type="password"] {
             </div>
         </div>
     </footer>
-
-    
-
 </body>
 </html>

@@ -69,9 +69,10 @@
 
         .sign-up-btn {
             font-family: 'Saira Condensed', sans-serif !important;
-            border-radius: 0 !important;
+            border-radius: 2 !important;
             width: 100px;
             font-weight: bold !important;
+            background-color:green;
         }
 
         .cta-buttons a {
@@ -174,25 +175,25 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 90px;
+    padding: 50px;
     background-color: #D7D7D7;
 }
 
-.content-flex {
+        .content-flex {
     display: flex;
     align-items: flex-start;
     gap: 20px;
 }
 
-.logo-container {
+        .logo-container {
     display: flex;
     align-items: flex-start;
 }
 
 .content-image {
+    padding-top:15vh;
     max-width: 800px;
     height: auto;
-    margin-top: 60px; /* Adjust this value to control how far down you want the image */
 }
 
 .login-container {
@@ -251,7 +252,9 @@ input[type="password"] {
             <a class="navbar-brand" href="{{ url('/') }}">INTELLIGENT VEHICLE IDENTIFICATION SYSTEM</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="{{ url('/signup') }}" class="nav-link btn btn-danger text-white sign-up-btn">SIGN UP</a></li>
+                    <li class="nav-item">
+                        <a href="{{ url('login') }}" class="nav-link btn text-white sign-up-btn" style="background-color: green;">LOGIN</a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -265,28 +268,58 @@ input[type="password"] {
         </div>
         <div class="login-container">
             <div class="login-text">
-                <h2>LOG-IN</h2>
+                <h2>SIGN IN</h2>
             </div>
-            <div class="login-form">
+
+            <!-- Error Handling Block -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('register') }}" method="POST" class="login-form">
+                @csrf <!-- CSRF token for form security -->
+
                 <div class="form-group">
-                    <center><label for="username">EMAIL</label></center>
+                    <center><label for="username">Username</label></center>
                     <input type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required>
                 </div>
+
                 <div class="form-group">
-                    <center><label for="password">PASSWORD</label></center>
+                    <center><label for="email">Email</label></center>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" required>
+                </div>
+
+                <div class="form-group">
+                    <center><label for="password">Password</label></center>
                     <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
                 </div>
+
+                <div class="form-group">
+                    <center><label for="confirm-password">Confirm Password</label></center>
+                    <input type="password" id="confirm-password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required>
+                </div>
+
                 <div class="login-prompt">
-                    <center>DON'T YOU HAVE ACCOUNT?<a href="{{ route('signup') }}" class="login">SIGN IN</a></p></center>
+                    <center>
+                        <p>Do you have an account? 
+                            <a href="{{ route('login') }}" class="login">Login</a>
+                        </p>
+                    </center>
                 </div>
+
                 <div class="cta-buttons">
-                    <center><a href="/" class="btn btn-success">LOGIN</a></center>
+                    <center><button type="submit" id="signin-btn" class="btn btn-success">Sign In</button></center>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </section>
-
 
     <!-- Footer Section -->
     <footer class="footer">
@@ -308,3 +341,4 @@ input[type="password"] {
     </footer>
 </body>
 </html>
+
