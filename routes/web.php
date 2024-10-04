@@ -20,8 +20,6 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
-// Profile route
-Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 
 // Logout route
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -32,5 +30,26 @@ Route::middleware(['auth'])->group(function () {
         return view('test'); // Load your test view
     });
 });
+
+// Main landing page route
+Route::get('/main_landing_page', function () {
+    return view('main_landing_page');
+})->name('main.landing.page'); // Optional: name it for better route referencing
+
+
+// About route
+Route::get('/about', function () {
+    return view('about');
+})->name('about'); // Ensure this is the only definition for the about route
+
+// profile route
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile'); // Ensure this is the only definition for the about route
+
+// contact route
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact'); // Ensure this is the only definition for the about route
 
 

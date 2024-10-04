@@ -18,7 +18,15 @@ class UserController extends Controller
         return view('auth.signup'); // Displays the 'signup' view
     }
 
-    public function profile() {
+    public function  main_landing_page() {
+        return view('main_landing_page'); // Displays the 'home_landing_page' view
+    }
+
+    public function  about() {
+        return view('about'); // Displays the 'about' view
+    }
+
+    public function  profile () {
         return view('profile'); // Displays the 'profile' view
     }
 }

@@ -20,7 +20,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->intended('/test'); 
+            return redirect()->intended('/main_landing_page'); 
         }
 
         return back()->withErrors([

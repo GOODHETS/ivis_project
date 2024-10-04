@@ -74,91 +74,82 @@
             color: red !important;
         }
 
-        .profile-header h2 {
+        .second-class {
+            background-color: #d9d9d9;
+            padding: 50px;
             text-align: center;
-            font-family: 'Saira Condensed', sans-serif !important; /* Same font */
-            font-weight: bold;
+        }
+
+        .about-us {
+            margin-bottom: 50px;
+        }
+
+        .about-us h2 {
+            padding-top: 2%;
+            text-align: center;
+            font-family: 'Saira Condensed', sans-serif !important;
             font-size: 36px;
-            padding-top: 5%;
-        }
-
-        .profile-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            width: 90%; /* Adjust the width to make it wider, you can also use a fixed width */
-            max-width: 1200px; /* Set a maximum width to prevent it from being too wide on larger screens */
-            margin: 0 auto; /* Center the container within the viewport */
-            padding-top: 6%;
-        }
-
-        .profile-image {
-            text-align: center;
-            margin-right: 15%;
-        }
-
-        .image-placeholder {
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            border: 2px solid #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .image-placeholder img {
-            width: 80%;
-            height: auto;
-            border-radius: 50%;
-        }
-
-        .profile-image h3 {
-            padding-top: 4%;
-            font-size: 18px;
             font-weight: bold;
-            padding-bottom: 10%;
+            color: #000000;
         }
-
-        .profile-form {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-        }
-
-        .form-group {
+        .content-container {
             display: flex;
-            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .description {
+            width: 50%;
+            text-align: left;
+        }
+
+        .description h3 {
+            font-family: 'Saira Condensed', sans-serif !important;
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
             margin-bottom: 10px;
         }
 
-        .form-group label {
-            font-size: 14px;
-            margin-bottom: 5px;
+        .description p {
+            font-size: 20px;
+            line-height: 1.5;
         }
 
-        .form-group input, 
-        .form-group select {
-            padding: 8px;
-            border: 1px solid #000;
-            border-radius: 4px;
-            font-size: 14px;
+        .icon {
+            width: 35%;
         }
 
-        button[type="submit"] {
-            grid-column: span 2;
-            padding: 10px 20px;
-            background-color: #00FF00;
-            color: #000;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
+        .icon img {
+            width: 100%;
+            height: auto;
+            padding-left: 3%;
         }
 
-        button[type="submit"]:hover {
-            background-color: #00CC00;
+        .mission-vision {
+            display: flex;
+            justify-content: space-around;
+            text-align: left;
+            margin-top: 60px;
+        }
+
+        .mission, .vision {
+            width: 40%;
+            margin-right: 20px;
+        }
+
+        .mission h4, .vision h4 {
+            font-family: 'Saira Condensed', sans-serif !important;
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .mission p, .vision p {
+            font-size: 20px;
+            line-height: 1.5;
         }
 
         .footer {
@@ -240,8 +231,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="{{ route('main.landing.page') }}" class="nav-link">HOME</a></li>
-                <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">ABOUT</a></li>
-                <li class="nav-item"><a href="#" class="nav-link profile-link active">PROFILE</a></li>
+                <li class="nav-item"><a href="#" class="nav-link about-link active" >ABOUT</a></li>
+                <li class="nav-item"><a href="{{ route('profile') }}" class="nav-link">PROFILE</a></li>
                 <li class="nav-item"><a href="{{ route('contact') }}"class="nav-link">CONTACT</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">SETTINGS</a></li>
             </ul>
@@ -249,69 +240,41 @@
     </nav>
 </header>
 
-<section class="third-content"></section>
-    <div class="profile-header">
-        <h2>PROFILE</h2>
-    </div>
-    <div class="profile-container">
-        <div class="profile-image">
-            <div class="image-placeholder">
-                <img src="" alt="Profile Image">
-            </div>
-            <h3>username</h3>
+<!-- About Us Section -->
+<section class="about-us">
+    <h2>About Us</h2>
+    <div class="content-container">
+        <div class="description">
+            <h3>Intelligent Vehicle Identification System</h3>
+            <p>
+                The Intelligent Vehicle Identification System (IVIS) is a school project 
+                that simplifies vehicle identification by allowing users to manually enter 
+                license plate numbers, cross-referencing them with a database of registered 
+                vehicles. Ideal for managing parking and access control in schools, IVIS enhances 
+                security with an easy-to-use interface for managing vehicle data and tracking activity, 
+                while providing students hands-on experience in database management and UI design.
+            </p>
         </div>
-        <div class="profile-form">
-            <div class="form-group">
-                <label for="last-name">LAST NAME:</label>
-                <input type="text" id="last-name" placeholder="Enter last name">
-
-                <label for="first-name">ID NUMBER:</label>
-                <input type="text" id="id-number" placeholder="Enter first name">
-            </div>
-            <div class="form-group">
-                <label for="id-number">FIRST NAME:</label>
-                <input type="text" id="first-namer" placeholder="Enter ID number">
-
-                <label for="plate-number">PLATE NUMBER:</label>
-                <input type="text" id="plate-number" placeholder="Enter plate number">
-            </div>
-            <div class="form-group">
-                <label for="gmail">GMAIL:</label>
-                <input type="text" id="gmail" placeholder="Enter Gmail">
-
-                <label for="facebook">FACEBOOK LINK:</label>
-                <input type="text" id="facebook" placeholder="Enter Facebook link">
-            </div>
-            <div class="form-group">
-                <label for="course">COURSE:</label>
-                <select id="course">
-                    <option value="">Select course</option>
-                    <option>BSIT</option>
-                    <option>BSCS</option>
-                    <option>BSBA</option>
-                    <option>BSTM</option>
-                    <option>BSHM</option>
-                    <option>BSAC</option>
-                </select>
-
-                <label for="year">YEAR:</label>
-                <select id="year">
-                    <option value="">Select year</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-
-                <label for="shift">SHIFT:</label>
-                <select id="shift">
-                    <option value="">Select shift</option>
-                    <option>A</option>
-                    <option>B</option>
-                    <option>c</option>
-                </select>
-            </div>
-            <button type="submit">UPDATE</button>
+        <div class="icon">
+        <img src="{{ asset('image/ivislogo.png') }}"alt="IVIS Logo" class="img-fluid content-image">
+        </div>
+    </div>
+    
+    <div class="mission-vision">
+        <div class="mission">
+            <h4>Mission</h4>
+            <p>
+                Our mission is to make school environments safer and more efficient by offering a simple, affordable vehicle identification system. 
+                We want to make it easy for schools to manage vehicle access and improve security through technology that’s both effective and efficient.
+            </p>
+        </div>
+        <div class="vision">
+            <h4>Vision</h4>
+            <p>
+                Our vision is to be the top choice for schools around the world when it comes to vehicle identification systems. 
+                We see a future where our technology helps schools keep their campuses safe and integrates smoothly with other school management tools, 
+                making daily operations easier and more secure.
+            </p>
         </div>
     </div>
 </section>

@@ -69,98 +69,25 @@
         .navbar-nav .nav-link.active {
             color: red;
         }
-
-        .about-link {
+        .home-link {
             color: red !important;
         }
-
-        .profile-header h2 {
+        .content {
+            background-color: #D7D7D7; 
+            padding: 50px;
             text-align: center;
-            font-family: 'Saira Condensed', sans-serif !important; /* Same font */
-            font-weight: bold;
+        }
+        .content h2 {
+            font-family: 'Saira Condensed', sans-serif !important;
             font-size: 36px;
-            padding-top: 5%;
-        }
-
-        .profile-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            width: 90%; /* Adjust the width to make it wider, you can also use a fixed width */
-            max-width: 1200px; /* Set a maximum width to prevent it from being too wide on larger screens */
-            margin: 0 auto; /* Center the container within the viewport */
-            padding-top: 6%;
-        }
-
-        .profile-image {
-            text-align: center;
-            margin-right: 15%;
-        }
-
-        .image-placeholder {
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            border: 2px solid #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .image-placeholder img {
-            width: 80%;
-            height: auto;
-            border-radius: 50%;
-        }
-
-        .profile-image h3 {
-            padding-top: 4%;
-            font-size: 18px;
             font-weight: bold;
-            padding-bottom: 10%;
+            color: #000000;
         }
-
-        .profile-form {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+        .content p {
+            font-family: 'Saira Condensed', sans-serif !important;
+            font-size: 19px;
+            color: #000000;
         }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 10px;
-        }
-
-        .form-group label {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-
-        .form-group input, 
-        .form-group select {
-            padding: 8px;
-            border: 1px solid #000;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        button[type="submit"] {
-            grid-column: span 2;
-            padding: 10px 20px;
-            background-color: #00FF00;
-            color: #000;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #00CC00;
-        }
-
         .footer {
             background-color: #000000;
             color: white;
@@ -239,9 +166,9 @@
         <a class="navbar-brand">INTELLIGENT VEHICLE IDENTIFICATION SYSTEM</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="{{ route('main.landing.page') }}" class="nav-link">HOME</a></li>
+                <li class="nav-item"><a href="#" class="nav-link home-link active">HOME</a></li>
                 <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">ABOUT</a></li>
-                <li class="nav-item"><a href="#" class="nav-link profile-link active">PROFILE</a></li>
+                <li class="nav-item"><a href="{{ route('profile') }}" class="nav-link">PROFILE</a></li>
                 <li class="nav-item"><a href="{{ route('contact') }}"class="nav-link">CONTACT</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">SETTINGS</a></li>
             </ul>
@@ -249,70 +176,12 @@
     </nav>
 </header>
 
-<section class="third-content"></section>
-    <div class="profile-header">
-        <h2>PROFILE</h2>
-    </div>
-    <div class="profile-container">
-        <div class="profile-image">
-            <div class="image-placeholder">
-                <img src="" alt="Profile Image">
-            </div>
-            <h3>username</h3>
-        </div>
-        <div class="profile-form">
-            <div class="form-group">
-                <label for="last-name">LAST NAME:</label>
-                <input type="text" id="last-name" placeholder="Enter last name">
-
-                <label for="first-name">ID NUMBER:</label>
-                <input type="text" id="id-number" placeholder="Enter first name">
-            </div>
-            <div class="form-group">
-                <label for="id-number">FIRST NAME:</label>
-                <input type="text" id="first-namer" placeholder="Enter ID number">
-
-                <label for="plate-number">PLATE NUMBER:</label>
-                <input type="text" id="plate-number" placeholder="Enter plate number">
-            </div>
-            <div class="form-group">
-                <label for="gmail">GMAIL:</label>
-                <input type="text" id="gmail" placeholder="Enter Gmail">
-
-                <label for="facebook">FACEBOOK LINK:</label>
-                <input type="text" id="facebook" placeholder="Enter Facebook link">
-            </div>
-            <div class="form-group">
-                <label for="course">COURSE:</label>
-                <select id="course">
-                    <option value="">Select course</option>
-                    <option>BSIT</option>
-                    <option>BSCS</option>
-                    <option>BSBA</option>
-                    <option>BSTM</option>
-                    <option>BSHM</option>
-                    <option>BSAC</option>
-                </select>
-
-                <label for="year">YEAR:</label>
-                <select id="year">
-                    <option value="">Select year</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-
-                <label for="shift">SHIFT:</label>
-                <select id="shift">
-                    <option value="">Select shift</option>
-                    <option>A</option>
-                    <option>B</option>
-                    <option>c</option>
-                </select>
-            </div>
-            <button type="submit">UPDATE</button>
-        </div>
+<!-- First Section Content -->
+<section class="content">
+    <div class="container">
+        <img src="{{ asset('image/ivislogo.png') }}"alt="IVIS Logo" class="img-fluid content-image">
+        <h2>INTELLIGENT VEHICLE IDENTIFICATION SYSTEM</h2>
+        <p>THE INTELLIGENT VEHICLE IDENTIFICATION SYSTEM (IVIS) IS A SIMPLE YET EFFECTIVE SCHOOL PROJECT DESIGNED TO IDENTIFY VEHICLES AND THEIR OWNERS BY ALLOWING USERS TO MANUALLY ENTER THE LICENSE PLATE NUMBER. UNLIKE MORE COMPLEX SYSTEMS THAT RELY ON IMAGE PROCESSING, IVIS SIMPLIFIES THE IDENTIFICATION PROCESS BY FOCUSING ON USER INPUT. ONCE THE PLATE NUMBER IS TYPED IN, THE SYSTEM CROSS-REFERENCES IT WITH A SMALL DATABASE OF REGISTERED VEHICLES, INSTANTLY IDENTIFYING THE VEHICLE OWNER.</p>
     </div>
 </section>
 
@@ -322,19 +191,18 @@
         <div class="footer-left">
             <p class="footer-text">Intelligent Vehicle Identification System</p>
             <div class="footer-email">
-                <img src="{{asset('image/email.png')}}" alt="email icon" class="email-icon"> 
-                <a class="email-link" href="mailto:ivisupport@gmail.com">ivisupport@gmail.com</a>
+                <img class="email-icon" src="{{asset('image/email.png')}}" alt="Email Icon">
+                <a class="email-link" href="mailto:ivis.company.og@gmail.com">ivis.company.og@gmail.com</a>
             </div>
         </div>
         <div class="footer-right">
-            <a href="{{ route('main.landing.page') }}" class="nav-link home-link active">Home</a>
             <a href="#">Privacy Policy</a>
             <a href="#">Contact Us</a>
         </div>
     </div>
 </footer>
 
-<!-- Bootstrap JS and dependencies -->
+<!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
