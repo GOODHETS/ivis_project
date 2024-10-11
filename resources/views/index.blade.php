@@ -91,11 +91,6 @@
             display: flex;
             justify-content: space-between;
         }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
         .footer-left {
             display: flex;
             flex-direction: column;
@@ -132,35 +127,23 @@
             background-color: white;
             transition: width 0.3s ease-in-out;
         }
+        .email-link:hover {
+            text-decoration: underline;
+        }
         .email-link:hover::after {
-            width: 100%;
+            width: 100%; 
         }
         .footer-right {
             display: flex;
             align-items: center;
         }
-        .footer-link {
-            font-family: 'Saira Condensed', sans-serif;
-            font-weight: medium;
-            font-size: 14px;
-            color: white !important;
-            text-decoration: none !important;
-            margin-left: 25px;
-            position: relative;
-            padding-bottom: 2px;
+        .footer-right a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
         }
-        .footer-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: white;
-            transition: width 0.3s ease-in-out;
-        }
-        .footer-link:hover::after {
-            width: 100%;
+        .footer-right a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -176,8 +159,7 @@
     <section class="content">
         <img src="{{ asset('image/ivislogo.png') }}" alt="IVIS Logo" class="content-image">
         <div class="container">
-            <h2>INTELLIGENT VEHICLE IDENTIFICATION SYSTEM</h2>
-            <p>THE INTELLIGENT VEHICLE IDENTIFICATION SYSTEM (IVIS) IS A SIMPLE YET EFFECTIVE SCHOOL PROJECT DESIGNED TO IDENTIFY VEHICLES AND THEIR OWNERS BY ALLOWING USERS TO MANUALLY ENTER THE LICENSE PLATE NUMBER. UNLIKE MORE COMPLEX SYSTEMS THAT RELY ON IMAGE PROCESSING, IVIS SIMPLIFIES THE IDENTIFICATION PROCESS BY FOCUSING ON USER INPUT. ONCE THE PLATE NUMBER IS TYPED IN, THE SYSTEM CROSS-REFERENCES IT WITH A SMALL DATABASE OF REGISTERED VEHICLES, INSTANTLY IDENTIFYING THE VEHICLE OWNER.</p>
+            <h2>INTELLIGENT VEHICLE IDENTIFICATION SYSTEM</h2> 
             <div class="cta-buttons">
                 <a href="{{ route('signup') }}" class="btn btn-danger">SIGN IN</a>
                 <a href="{{ route('login') }}" class="btn btn-success">LOGIN</a>
@@ -185,23 +167,21 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="footer-text">Get in Touch</div>
-                    <div class="footer-email">
-                        <img src="{{ asset('image/email.png') }}" alt="Email Icon" class="email-icon">
-                        <a href="mailto:email@address.com" class="email-link">IVIS.SECURITY@GMAIL.COM</a>
-                    </div>
-                </div>
-                <div class="footer-right">
-                    <a href="#" class="footer-link">Terms of Service</a>
-                    <a href="#" class="footer-link">Privacy Policy</a>
-                </div>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-left">
+            <p class="footer-text">Intelligent Vehicle Identification System</p>
+            <div class="footer-email">
+                <img class="email-icon" src="{{asset('image/email.png')}}" alt="Email Icon">
+                <a class="email-link" href="mailto:ivis.company.og@gmail.com">ivis.company.og@gmail.com</a>
             </div>
         </div>
-    </footer>
+        <div class="footer-right">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

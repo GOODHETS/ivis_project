@@ -99,11 +99,6 @@
             display: flex;
             justify-content: space-between;
         }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
         .footer-left {
             display: flex;
             flex-direction: column;
@@ -140,35 +135,23 @@
             background-color: white;
             transition: width 0.3s ease-in-out;
         }
+        .email-link:hover {
+            text-decoration: underline;
+        }
         .email-link:hover::after {
-            width: 100%;
+            width: 100%; 
         }
         .footer-right {
             display: flex;
             align-items: center;
         }
-        .footer-link {
-            font-family: 'Saira Condensed', sans-serif;
-            font-weight: medium;
-            font-size: 14px;
-            color: white !important;
-            text-decoration: none !important;
-            margin-left: 25px;
-            position: relative;
-            padding-bottom: 2px;
+        .footer-right a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
         }
-        .footer-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: white;
-            transition: width 0.3s ease-in-out;
-        }
-        .footer-link:hover::after {
-            width: 100%;
+        .footer-right a:hover {
+            text-decoration: underline;
         }
 
         .content {
@@ -243,25 +226,50 @@ input[type="password"] {
     border-radius: 5px;
     font-size: 16px;
 }
-    </style>
+
+/* Styles for the checklist */
+.checklist {
+        margin-top: 10px;
+        padding-left: 0;
+    }
+
+    .checklist-item {
+        font-size: small;
+        display: flex;
+        align-items: center;
+        margin: 5px 0;
+    }
+
+    .checklist-item input[type="checkbox"] {
+        margin-right: 5px;
+        accent-color: green; /* Change checkbox color */
+    }
+
+    /* Responsive design adjustments */
+    @media (max-width: 600px) {
+        .checklist-item {
+            font-size: 12px; /* Smaller font on smaller screens */
+        }
+    }
+</style>
 </head>
 <body>
-    <!-- Header Section with Navbar -->
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="{{ url('/') }}">INTELLIGENT VEHICLE IDENTIFICATION SYSTEM</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="{{ url('login') }}" class="nav-link btn text-white sign-up-btn" style="background-color: green;">LOGIN</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+<!-- Header Section with Navbar -->
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="{{ url('/') }}">INTELLIGENT VEHICLE IDENTIFICATION SYSTEM</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="{{ url('login') }}" class="nav-link btn text-white sign-up-btn" style="background-color: green;">LOGIN</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-    <!-- Main Content Section -->
-    <section class="content">
+<!-- Main Content Section -->
+<section class="content">
     <div class="content-flex">
         <div class="logo-container">
             <img src="{{ asset('image/ivislogo.png') }}" alt="IVIS Logo" class="content-image">
@@ -282,7 +290,7 @@ input[type="password"] {
                 </div>
             @endif
 
-            <form action="{{ route('register') }}" method="POST" class="login-form">
+            <form action="{{ route('register') }}" method="POST" class="login-form" onsubmit="return validatePassword()">
                 @csrf <!-- CSRF token for form security -->
 
                 <div class="form-group">
@@ -297,12 +305,34 @@ input[type="password"] {
 
                 <div class="form-group">
                     <center><label for="password">Password</label></center>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required oninput="validatePassword()">
+                    <small id="passwordError" class="form-text text-danger" style="display:none;"></small>
+
+                    <!-- Checklist for Password Requirements -->
+                    <div id="passwordChecklist" class="checklist" style="display:none; margin-top: 10px;">
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li class="checklist-item">
+                                <input type="checkbox" id="upperCaseCheck" disabled>
+                                Password must contain at least 1 uppercase letter.
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" id="specialCharCheck" disabled>
+                                Password must contain at least 1 special character.
+                            </li>
+                            <li class="checklist-item">
+                                <input type="checkbox" id="lengthCheck" disabled>
+                                Password must be at least 8 characters long.
+                            </li>
+                        </ul>
+                        <div id="passwordStrength" style="margin-top: 10px; font-weight: bold;">
+                            <span id="strengthMessage" style="font-size: 12px;"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <center><label for="confirm-password">Confirm Password</label></center>
-                    <input type="password" id="confirm-password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required>
+                    <input type="password" id="confirm-password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required oninput="hideStrength()">
                 </div>
 
                 <div class="login-prompt">
@@ -321,24 +351,72 @@ input[type="password"] {
     </div>
 </section>
 
-    <!-- Footer Section -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="footer-text">Get in Touch</div>
-                    <div class="footer-email">
-                        <img src="{{ asset('image/email.png') }}" alt="Email Icon" class="email-icon">
-                        <a href="mailto:email@address.com" class="email-link">IVIS.SECURITY@GMAIL.COM</a>
-                    </div>
-                </div>
-                <div class="footer-right">
-                    <a href="#" class="footer-link">Terms of Service</a>
-                    <a href="#" class="footer-link">Privacy Policy</a>
-                </div>
+<!-- JavaScript to show/hide checklist and validate password -->
+<script>
+    function validatePassword() {
+        const password = document.getElementById('password').value;
+        const upperCaseCheck = document.getElementById('upperCaseCheck');
+        const specialCharCheck = document.getElementById('specialCharCheck');
+        const lengthCheck = document.getElementById('lengthCheck');
+        const passwordChecklist = document.getElementById('passwordChecklist');
+        const strengthMessage = document.getElementById('strengthMessage');
+
+        // Show checklist when user types a password
+        passwordChecklist.style.display = 'block';
+
+        // Check for uppercase letter
+        upperCaseCheck.checked = /[A-Z]/.test(password);
+        // Check for special character
+        specialCharCheck.checked = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        // Check for minimum length
+        lengthCheck.checked = password.length >= 8;
+
+        // Change the color of the checklist items based on whether the conditions are met
+        upperCaseCheck.parentElement.style.color = upperCaseCheck.checked ? 'green' : 'red';
+        specialCharCheck.parentElement.style.color = specialCharCheck.checked ? 'green' : 'red';
+        lengthCheck.parentElement.style.color = lengthCheck.checked ? 'green' : 'red';
+
+        // Determine password strength
+        let strength = 'Weak';
+        if (upperCaseCheck.checked && specialCharCheck.checked && lengthCheck.checked) {
+            strength = 'Strong';
+        } else if (upperCaseCheck.checked || specialCharCheck.checked || lengthCheck.checked) {
+            strength = 'Medium';
+        }
+        
+        // Display password strength
+        strengthMessage.textContent = `Password Strength: ${strength}`;
+        strengthMessage.style.color = strength === 'Strong' ? 'green' : (strength === 'Medium' ? 'orange' : 'red');
+
+        // Allow form submission regardless of password validity
+        return true; // Allow form submission
+    }
+
+    function hideStrength() {
+        // Hide the password strength message when the confirm password input is used
+        const strengthMessage = document.getElementById('strengthMessage');
+        strengthMessage.textContent = ''; // Clear the strength message
+        document.getElementById('passwordChecklist').style.display = 'none'; // Hide the checklist
+    }
+</script>
+
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-left">
+            <p class="footer-text">Intelligent Vehicle Identification System</p>
+            <div class="footer-email">
+                <img src="{{asset('image/email.png')}}" alt="email icon" class="email-icon"> 
+                <a class="email-link" href="mailto:ivisupport@gmail.com">ivisupport@gmail.com</a>
             </div>
         </div>
-    </footer>
+        <div class="footer-right">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
-

@@ -29,4 +29,8 @@ class UserController extends Controller
     public function  profile () {
         return view('profile'); // Displays the 'profile' view
     }
+
+    public function  settings () {
+        return view('settings'); // Displays the 'settings' view
+    }
 }

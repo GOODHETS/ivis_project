@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AuthController; // Ensure this line is present
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
 
 
 // Home route
@@ -20,22 +21,23 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
+//change  password
+Route::get('/change-password', [RegisterController::class, 'showChangePasswordForm'])->name('change.password');
+Route::post('/change-password', [RegisterController::class, 'changePassword']);
 
 // Logout route
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Test route
-Route::middleware(['auth'])->group(function () {
-    Route::get('/test', function () {
-        return view('test'); // Load your test view
-    });
-});
 
 // Main landing page route
 Route::get('/main_landing_page', function () {
     return view('main_landing_page');
 })->name('main.landing.page'); // Optional: name it for better route referencing
 
+//create profile 
+Route::get('/create-profile', function () {
+    return view('create-profile');
+})->name('create-profile');
 
 // About route
 Route::get('/about', function () {
@@ -51,5 +53,13 @@ Route::get('/profile', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact'); // Ensure this is the only definition for the about route
+
+// settings route
+Route::get('/settings', function () {
+    return view('settings');
+})->name('settings'); // Ensure this is the only definition for the about route
+
+//comtact page
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 

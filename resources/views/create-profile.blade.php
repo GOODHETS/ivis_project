@@ -243,7 +243,7 @@
                 <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">ABOUT</a></li>
                 <li class="nav-item"><a href="#" class="nav-link profile-link active">PROFILE</a></li>
                 <li class="nav-item"><a href="{{ route('contact') }}"class="nav-link">CONTACT</a></li>
-                <li class="nav-item"><a href="{{ route('settings') }}" class="nav-link">SETTINGS</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">SETTINGS</a></li>
             </ul>
         </div>
     </nav>
@@ -311,7 +311,7 @@
                     <option>c</option>
                 </select>
             </div>
-            <button type="submit">UPDATE</button>
+            <button type="submit">CREATE</button>
         </div>
     </div>
 </section>

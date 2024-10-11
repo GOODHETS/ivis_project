@@ -234,7 +234,7 @@
                 <li class="nav-item"><a href="#" class="nav-link about-link active" >ABOUT</a></li>
                 <li class="nav-item"><a href="{{ route('profile') }}" class="nav-link">PROFILE</a></li>
                 <li class="nav-item"><a href="{{ route('contact') }}"class="nav-link">CONTACT</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">SETTINGS</a></li>
+                <li class="nav-item"><a href="{{ route('settings') }}" class="nav-link">SETTINGS</a></li>
             </ul>
         </div>
     </nav>

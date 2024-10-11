@@ -98,11 +98,6 @@
             display: flex;
             justify-content: space-between;
         }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
         .footer-left {
             display: flex;
             flex-direction: column;
@@ -139,35 +134,23 @@
             background-color: white;
             transition: width 0.3s ease-in-out;
         }
+        .email-link:hover {
+            text-decoration: underline;
+        }
         .email-link:hover::after {
-            width: 100%;
+            width: 100%; 
         }
         .footer-right {
             display: flex;
             align-items: center;
         }
-        .footer-link {
-            font-family: 'Saira Condensed', sans-serif;
-            font-weight: medium;
-            font-size: 14px;
-            color: white !important;
-            text-decoration: none !important;
-            margin-left: 25px;
-            position: relative;
-            padding-bottom: 2px;
+        .footer-right a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
         }
-        .footer-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: white;
-            transition: width 0.3s ease-in-out;
-        }
-        .footer-link:hover::after {
-            width: 100%;
+        .footer-right a:hover {
+            text-decoration: underline;
         }
 
         .content {
@@ -257,64 +240,67 @@ input[type="password"] {
         </nav>
     </header>
 
-    <!-- Main Content Section -->
-    <section class="content">
-        <div class="content-flex">
-            <div class="logo-container">
-                <img src="{{ asset('image/ivislogo.png') }}" alt="IVIS Logo" class="content-image">
-            </div>
-            <div class="login-container">
-                <div class="login-text">
-                    <h2>LOG-IN</h2>
-                </div>
-                <form action="{{ route('login.submit') }}" method="POST" class="login-form">
-                    @csrf
-                    <div class="form-group">
-                        <center><label for="email">EMAIL</label></center>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" required>
-                    </div>
-                    <div class="form-group">
-                        <center><label for="password">PASSWORD</label></center>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
-                    </div>
-                    <!-- Display validation errors if any -->
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <div class="login-prompt">
-                        <center>DON'T YOU HAVE AN ACCOUNT? <a href="{{ route('signup') }}" class="login">SIGN UP</a></center>
-                    </div>
-                    <div class="cta-buttons">
-                        <center><button type="submit" class="btn btn-success">LOGIN</button></center>
-                    </div>
-                </form>
-            </div>
+<!-- Main Content Section -->
+<section class="content">
+    <div class="content-flex">
+        <div class="logo-container">
+            <img src="{{ asset('image/ivislogo.png') }}" alt="IVIS Logo" class="content-image">
         </div>
-    </section>
+        <div class="login-container">
+            <div class="login-text">
+                <h2>LOG-IN</h2>
+            </div>
+            <form action="{{ route('login.submit') }}" method="POST" class="login-form">
+                @csrf
+                <div class="form-group">
+                    <center><label for="email">EMAIL</label></center>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group">
+                    <center><label for="password">PASSWORD</label></center>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
+                </div>
+                <!-- Forgot Password Link -->
+                <div class="forgot-password">
+                    <center><a href="{{ route('password.request') }}">Forgot Password?</a></center>
+                </div>
+                <!-- Display validation errors if any -->
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <div class="login-prompt">
+                    <center>DON'T YOU HAVE AN ACCOUNT? <a href="{{ route('signup') }}" class="login">SIGN UP</a></center>
+                </div>
+                <div class="cta-buttons">
+                    <center><button type="submit" class="btn btn-success">LOGIN</button></center>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-    <!-- Footer Section -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="footer-text">Get in Touch</div>
-                    <div class="footer-email">
-                        <img src="{{ asset('image/email.png') }}" alt="Email Icon" class="email-icon">
-                        <a href="mailto:email@address.com" class="email-link">IVIS.SECURITY@GMAIL.COM</a>
-                    </div>
-                </div>
-                <div class="footer-right">
-                    <a href="#" class="footer-link">Terms of Service</a>
-                    <a href="#" class="footer-link">Privacy Policy</a>
-                </div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-left">
+            <p class="footer-text">Intelligent Vehicle Identification System</p>
+            <div class="footer-email">
+                <img src="{{asset('image/email.png')}}" alt="email icon" class="email-icon"> 
+                <a class="email-link" href="mailto:ivisupport@gmail.com">ivisupport@gmail.com</a>
             </div>
         </div>
-    </footer>
+        <div class="footer-right">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

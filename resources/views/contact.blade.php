@@ -12,6 +12,13 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <!-- Custom CSS -->
     <style>
         body {
@@ -72,27 +79,116 @@
         .home-link {
             color: red !important;
         }
-        .content {
-            background-color: #D7D7D7; 
-            padding: 50px;
+        .container {
+            display: flex;
+            width: 70%;
+            margin: 80px auto;
+            background-color: transparent;
+            border: 1px solid #000000;
+            height: auto;
+            padding: 40px 20px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        .left-side, .right-side {
+            padding: 20px;
+        }
+
+        .left-side {
+            width: 50%;
+            background-color: transparent;
+            border-right: 1px solid #000000;
+        }
+
+        .right-side {
+            width: 50%;
+            background-color: transparent;
+        }
+
+        .logo, .logo-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 250px;
+            margin: 0 auto 15px;
+            display: block;
+        }
+
+        .email-form {
             text-align: center;
         }
-        .content h2 {
-            font-family: 'Saira Condensed', sans-serif !important;
-            font-size: 36px;
+
+        .email-form img {
+            width: 250px;
+            margin: 0 auto 15px;
+            display: block;
+        }
+
+        .contact-info p {
+            padding-top: 15px;
             font-weight: bold;
-            color: #000000;
+            margin: 20px 60px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
         }
-        .content p {
-            font-family: 'Saira Condensed', sans-serif !important;
-            font-size: 19px;
-            color: #000000;
+
+        .contact-info img {
+            width: 20px;
+            margin-right: 10px;
         }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-size: 16px;
+            width: 90%;
+        }
+
+        input, textarea {
+            margin-bottom: 20px;
+            padding: 15px;
+            font-size: 14px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            width: 90%;
+            background: transparent;
+            transition: background-color 0.3s ease;
+        }
+
+        input:hover, textarea:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        button {
+            padding: 15px;
+            background-color: #026906;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 90%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #004c04;
+        }
+
         .footer {
             background-color: #000000;
             color: white;
             font-weight: bold;
-            padding: 40px 0;
             display: flex;
             align-items: center;
         }
@@ -170,11 +266,43 @@
                 <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">ABOUT</a></li>
                 <li class="nav-item"><a href="{{ route('profile') }}" class="nav-link">PROFILE</a></li>
                 <li class="nav-item"><a href="#" class="nav-link contact-link active">CONTACT</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">SETTINGS</a></li>
+                <li class="nav-item"><a href="{{ route('settings') }}" class="nav-link">SETTINGS</a></li>
             </ul>
         </div>
     </nav>
 </header>
+
+<div class="container">
+    <div class="left-side">
+        <div class="logo">
+            <img src="{{ asset('image/12m.png') }}" alt="Logo">
+        </div>
+        <div class="contact-info">
+            <p><img src="{{ asset('image/img3.svg') }}" alt="Email-econ"> ivis.company.og@gmail.com</p>
+            <p><img src="{{ asset('image/img8.svg') }}" alt="Facebook Icon"> ivis.company.facebook.com</p>
+            <p><img src="{{ asset('image/img5.svg') }}" alt="Phone Icon"> 044-524-125</p>
+            <p><img src="{{ asset('image/img6.svg') }}" alt="Mobile Icon"> 63+9854785415</p>
+        </div>
+    </div>
+    <div class="right-side">
+        <div class="email-form">
+            <img src="{{ asset('image/12.png') }}" alt="Logo">
+        </div>
+        <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
+            @csrf
+            <label for="name">NAME:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">EMAIL:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">MESSAGE:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
 
 <!-- Footer -->
 <footer class="footer">
@@ -182,22 +310,55 @@
         <div class="footer-left">
             <p class="footer-text">Intelligent Vehicle Identification System</p>
             <div class="footer-email">
-                <img class="email-icon" src="{{asset('image/email.png')}}" alt="Email Icon">
-                <a class="email-link" href="mailto:ivis.company.og@gmail.com">ivis.company.og@gmail.com</a>
+                <img src="{{asset('image/email.png')}}" alt="email icon" class="email-icon"> 
+                <a class="email-link" href="mailto:ivisupport@gmail.com">ivisupport@gmail.com</a>
             </div>
         </div>
         <div class="footer-right">
-            <a href="{{ route('main.landing.page') }}">Home</a>
+            <a href="{{ route('main.landing.page') }}" class="nav-link home">Home</a>
             <a href="#">Privacy Policy</a>
             <a href="#">Contact Us</a>
         </div>
     </div>
 </footer>
 
-<!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- SweetAlert JavaScript -->
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    const formData = new FormData(this);
+
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest', // Optional, can be useful to identify AJAX requests
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Show SweetAlert if the message was sent successfully
+            Swal.fire({
+                icon: 'success',
+                title: 'Thank You!',
+                text: data.success,
+            });
+            this.reset(); // Reset the form after successful submission
+        }
+    })
+    .catch(error => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+        });
+    });
+});
+</script>
 
 </body>
 </html>
+
+
