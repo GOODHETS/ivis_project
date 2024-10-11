@@ -241,49 +241,46 @@ input[type="password"] {
     </header>
 
 <!-- Main Content Section -->
-<section class="content">
-    <div class="content-flex">
-        <div class="logo-container">
-            <img src="{{ asset('image/ivislogo.png') }}" alt="IVIS Logo" class="content-image">
-        </div>
-        <div class="login-container">
-            <div class="login-text">
-                <h2>LOG-IN</h2>
+    <!-- Main Content Section -->
+    <section class="content">
+        <div class="content-flex">
+            <div class="logo-container">
+                <img src="{{ asset('image/ivislogo.png') }}" alt="IVIS Logo" class="content-image">
             </div>
-            <form action="{{ route('login.submit') }}" method="POST" class="login-form">
-                @csrf
-                <div class="form-group">
-                    <center><label for="email">EMAIL</label></center>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" required>
+            <div class="login-container">
+                <div class="login-text">
+                    <h2>LOG-IN</h2>
                 </div>
-                <div class="form-group">
-                    <center><label for="password">PASSWORD</label></center>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
-                </div>
-                <!-- Forgot Password Link -->
-                <div class="forgot-password">
-                    <center><a href="{{ route('password.request') }}">Forgot Password?</a></center>
-                </div>
-                <!-- Display validation errors if any -->
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                <form action="{{ route('login.submit') }}" method="POST" class="login-form">
+                    @csrf
+                    <div class="form-group">
+                        <center><label for="email">EMAIL</label></center>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" required>
                     </div>
-                @endif
-                <div class="login-prompt">
-                    <center>DON'T YOU HAVE AN ACCOUNT? <a href="{{ route('signup') }}" class="login">SIGN UP</a></center>
-                </div>
-                <div class="cta-buttons">
-                    <center><button type="submit" class="btn btn-success">LOGIN</button></center>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <center><label for="password">PASSWORD</label></center>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
+                    </div>
+                    <!-- Display validation errors if any -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="login-prompt">
+                        <center>DON'T YOU HAVE AN ACCOUNT? <a href="{{ route('signup') }}" class="login">SIGN UP</a></center>
+                    </div>
+                    <div class="cta-buttons">
+                        <center><button type="submit" class="btn btn-success">LOGIN</button></center>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 <!-- Footer -->
